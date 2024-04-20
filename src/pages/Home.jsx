@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 
 export const Home = () => {
+    const [productList, setProductList] = useState([]); 
+    const [currProduct, setCurrProduct] = useState(""); // _id
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const navigate = useNavigate();
+
+    const getItems = async () => {
+        setIsLoading(true);
+        setError("");    
+
+        try {
+            const response = await Axios.get(
+                `${process.env.REACT_APP_LOCALHOST}/getProds`,
+            );
+
+            console.log(response);
+
+            if (response) {
+                setProductList(response.data);
+            } else {
+                setProductList({});
+            }
+
+        } catch (error) {
+            console.error(`Axios Error: ${error}`);
+            setError(error);
+        };
+    };
 
     const crud_btns = (() => {
         return (
@@ -25,6 +54,11 @@ export const Home = () => {
             </>
         );
     })();
+
+
+    useEffect(() => {
+        getItems();
+    }, []);
 
     return (
         <section>
