@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { ItemNavigation } from './components/ItemNavigation.js';
+import { Product } from './components/Product.js';
 
 export const Home = () => {
     // PRODUCT
@@ -118,20 +119,18 @@ export const Home = () => {
             </div>
 
             <div className='container'>
-                <form>
-                    <label>Name: {currProduct.name}</label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} />
+                <Product 
+                   name={currProduct?.name} 
+                   id={currProduct?._id}
+                   manufacturer={currProduct?.manufacturer}
+                   price={currProduct?.price}
+                   setName={setName}
+                   setBrand={setBrand}
+                   setPrice={setPrice}
+                />
 
-                    <label>ID: {currProduct._id}</label>
-                    
-                    <label>Brand: {currProduct.manufacturer}</label>
-                    <input value={brand} onChange={(e) => setBrand(e.target.value)} />
-
-                    <label>Price: {currProduct.price}</label>
-                    <input value={price} type="number" onChange={(e) => setPrice(e.target.value)} />
-
-                    <img src={currProduct.image} alt="Product Image" />
-                </form>
+                <img src={currProduct?.image}/>
+                   
             </div>
 
             <ItemNavigation 
