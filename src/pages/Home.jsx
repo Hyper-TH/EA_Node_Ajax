@@ -1,145 +1,111 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import '../styles/home.css';
 import { Link, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
-import { ItemNavigation } from './components/ItemNavigation.js';
-import { Product } from './components/Product.js';
+// import { UserAuth } from '../context/AuthContext.js';
+
 
 export const Home = () => {
-    // PRODUCT
-    const [productList, setProductList] = useState([]); 
-    const [currID, setCurrID] = useState(""); //_id
-    const [currProduct, setCurrProduct] = useState({}); 
-    const [currIndex, setCurrIndex] = useState(null);
-    const [currTotal, setCurrTotal] = useState(null);
+    // const { user, userType, logout } = UserAuth();
+	const navigate = useNavigate();
+    
+	// const handleLogout = async () => {
+	// 	try {
+	// 		await logout();
+	// 		navigate('/');
+			
+	// 		console.log(`Logged Out`)
+	// 	} catch (e) {
+	// 		console.log(e.message);
+	// 	}
+	// };
 
-    // FOR CRUD
-    const [name, setName] = useState("");
-    const [brand, setBrand] = useState("");
-    const [price, setPrice] = useState("");
+    // const content = (() => {
+    //     // If user is verified
+    //     if (user && user.email  && (userType === 'verified')) {
+    //         return (
+    //             <>
+    //             <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
 
-    // STATES
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState("");
+    //             <Link to="/subscriptions" className="btn_collection_top">
+    //                 See Subscriptions
+    //             </Link>
 
-    const navigate = useNavigate();
+    //             <Link to="/search" className="btn_collection_mid">
+    //                 Search Medicines
+    //             </Link>
 
-    const getItems = async () => {
-        setIsLoading(true);
-        setError("");    
+    //             <Link to="/foodInteractions" className="btn_collection_mid">
+    //                 Discover Food Interactions
+    //             </Link>
 
-        try {
-            const response = await Axios.get(
-                `${process.env.REACT_APP_LOCALHOST}/getProds`, {
-                    params: { id: currID }
-                }
-            );
+                            
+    //             <Link to="/searchDrugs" className="btn_collection_mid">
+    //                 Discover Drug Interactions
+    //             </Link>
 
-            console.log(response);
-            console.log(response.data.product);
-            console.log("Total", response.data.total);
-            console.log("Index", response.data.index);
-
-            setCurrProduct(response.data.product);
-            setCurrID(response.data.product._id)
-            setCurrTotal(response.data.total);
-            setCurrIndex(response.data.index)
-            setError('');
-        } catch (err) {
-            setError('Failed to fetch product');
-            setCurrProduct(null);
-            console.error(err);
-        }
-    };
-
-    // TODO: Perhaps pass the buttons and functions as props
-    const updateItem = async () => {
-        // TODO: Consider those that are unchanged
-        const data = { 
-            name: name, 
-            brand: brand,
-            price: price
-        };
-
-        const updatedItem = await Axios.put(
-            `${process.env.REACT_APP_LOCALHOST}/editProd`, data
-        )
-    };
+    //             <Link to="/searchProduct" className="btn_collection_bottom">
+    //                 Search Merck Products
+    //             </Link>
 
 
-    const searchProduct = (() => {
+    //             </>
+    //         );
+    //     } 
+    //     // If user is standard
+    //     else {
+    //         return (
+    //             <>
+    //             <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
 
-    });
+                // <Link to="/subscriptions" className="btn_collection_top">
+                //     See Subscriptions
+                // </Link>
 
-    const nextItem = (() => {
+                // <Link to="/search" className="btn_collection_mid">
+                //     Search Medicines
+                // </Link>
 
-    });
+                // <Link to="/foodInteractions" className="btn_collection_mid">
+                //    Discover Food Interactions
+                // </Link>
 
-    const prevItem = (() => {
+                            
+                // <Link to="/searchDrugs" className="btn_collection_bottom">
+                //     Discover Drug Interactions
+                // </Link>
 
-    });
-
-    const crud_btns = (() => {
-        return (
-            <>
-            <button>
-                Insert
-            </button>
-            
-            <button>
-                Update
-            </button>
-            
-            <button>
-                Delete
-            </button>
-            
-            <button onClick={e => searchProduct(e.target.value)}>
-                Search
-            </button>
-            </>
-        );
-    })();
-
-
-    useEffect(() => {
-        getItems();
-    }, []);
-
+    //             </>
+    //         );
+    //     }
+    // })();
+ 
     return (
-        <section>
-            <div className='crud_buttons'>
-                {crud_btns}
+        <section className="main_container">
+            <div className="sub_container">
+            <h1 className="main_title">
+                Welcome to the Hyper Shop!
+            </h1>
+
+            <div className="home_container">
+                <div className="home">
+
+                    <div className="btn_collection">
+                        {/* {content}   */}
+
+                        <Link to="/searchProduct" className="btn_collection_mid">
+                            Search Products
+                        </Link>
+
+                        <Link to="/productInfo" className="btn_collection_mid">
+                            Check Products
+                        </Link>
+                    </div>   
+
+                    {/* <button className="btn_primary" onClick={handleLogout}>Logout</button> */}
+
+                </div>
             </div>
-
-
-            <div className='about'>
-                <Link to='https://github.com/Hyper-TH/EA_Node_Ajax'>
-                    <button>About this page</button>
-                </Link>
             </div>
-
-            <div className='container'>
-                <Product 
-                   name={currProduct?.name} 
-                   id={currProduct?._id}
-                   manufacturer={currProduct?.manufacturer}
-                   price={currProduct?.price}
-                   setName={setName}
-                   setBrand={setBrand}
-                   setPrice={setPrice}
-                />
-
-                <img src={currProduct?.image}/>
-                   
-            </div>
-
-            <ItemNavigation 
-                total={currTotal}
-                index={currIndex}
-                prevItem={prevItem}
-                nextItem={nextItem}
-            />
-
         </section>
-    )
+    );
 };

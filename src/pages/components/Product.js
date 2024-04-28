@@ -1,12 +1,17 @@
+import '../../styles/productInfo.css';
+
 export const Product = (props) => {
     return (
         <>
-        <form>
+        <form onSubmit={props.updateItem} className='product_form'>
 
             <label>Name: {props.name}</label>
-            <input onChange={(e) => props.setName(e.target.value)} />
+            <input 
+                value={props.id}
+                onChange={(e) => props.setName(e.target.value)} 
+            />
 
-            <label>ID: {}</label>
+            <label>ID: {props.id}</label>
             
             <label>Brand: {props.manufacturer}</label>
             <input onChange={(e) => props.setBrand(e.target.value)} />
@@ -14,6 +19,8 @@ export const Product = (props) => {
             <label>Price: {props.price}</label>
             <input type="number" onChange={(e) => props.setPrice(e.target.value)} />
         </form>
+
+        <button className='btn_submit' type="submit">Update</button>
         </>
     );
 };
