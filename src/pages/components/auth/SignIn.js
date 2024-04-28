@@ -6,7 +6,7 @@ export const SignIn = () => {
     const navigate = useNavigate();
 
     const guestDirect = () => {
-        navigate('index');
+        navigate('home');
     };
 
     return (
