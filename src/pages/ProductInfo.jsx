@@ -9,8 +9,8 @@ export const ProductInfo = () => {
     // PRODUCT
     const [currID, setCurrID] = useState(""); //_id
     const [currProduct, setCurrProduct] = useState({}); 
-    const [currIndex, setCurrIndex] = useState(null);
-    const [currTotal, setCurrTotal] = useState(null);
+    const [currIndex, setCurrIndex] = useState(0);
+    const [currTotal, setCurrTotal] = useState(0);
 
     // FOR CRUD
     const [name, setName] = useState("");
@@ -43,6 +43,8 @@ export const ProductInfo = () => {
             setCurrID(response.data.product._id)
             setCurrTotal(response.data.total);
             setCurrIndex(response.data.index)
+            // console.log(typeof(response.data.index));
+
             setError('');
         } catch (err) {
             setError('Failed to fetch product');
@@ -69,14 +71,54 @@ export const ProductInfo = () => {
 
         console.log(updateItem);
     };
+    
+    const changeItem = async (index) => {
+        setIsLoading(true);
+        setError("");
 
-    const nextItem = (() => {
+        console.log(`change item:`, typeof(index));
+        try {
+            const response = await Axios.get(
+                `${process.env.REACT_APP_LOCALHOST}/getItem`, {
+                    params: { index: index }
+                }
+            );
 
-    });
+            if (response) {
+                setCurrProduct(response.data.product);
+                setCurrID(response.data.product._id)
+                setCurrTotal(parseInt(response.data.total));
+                setCurrIndex(parseInt(response.data.index));
 
-    const prevItem = (() => {
+                console.log(typeof(response.data.index));
+                setError('');
+            } else {
+                setError(`Failed to get next product`);
+            }
 
-    });
+        } catch (err) {
+            setError(`Failed to get next product`);
+            console.error(err);
+        };
+    };
+
+    const nextItem = async () => {
+        if ((currIndex + 1) < currTotal) {  // Assuming currIndex is zero-based and currTotal is the count of items.
+            const newIndex = currIndex + 1;
+            changeItem(newIndex);
+        } else {
+            console.log("No more items to navigate to.");
+        }
+    };
+    
+    const prevItem = async () => {
+        if (currIndex >= 0) {
+            const newIndex = currIndex - 1;
+            changeItem(newIndex);
+        } else {
+            console.log("No previous items to navigate to.");
+        }
+    };
 
     const crud_btns = (() => {
         return (
@@ -130,14 +172,15 @@ export const ProductInfo = () => {
 
                     <div className='product_image'>
                         <img src={currProduct?.image} alt="Product" />
+
+                        <ItemNavigation 
+                            total={currTotal}
+                            index={currIndex}
+                            prevItem={prevItem}
+                            nextItem={nextItem}
+                        />
                     </div>
 
-                    <ItemNavigation 
-                        total={currTotal}
-                        index={currIndex}
-                        prevItem={prevItem}
-                        nextItem={nextItem}
-                    />
                 </div>
             </div>
         </div>

@@ -6,10 +6,7 @@ export const Product = (props) => {
         <form onSubmit={props.updateItem} className='product_form'>
 
             <label>Name: {props.name}</label>
-            <input 
-                value={props.id}
-                onChange={(e) => props.setName(e.target.value)} 
-            />
+            <input onChange={(e) => props.setName(e.target.value)} />
 
             <label>ID: {props.id}</label>
             
@@ -18,9 +15,9 @@ export const Product = (props) => {
 
             <label>Price: {props.price}</label>
             <input type="number" onChange={(e) => props.setPrice(e.target.value)} />
-        </form>
 
-        <button className='btn_submit' type="submit">Update</button>
+            <button className='btn_submit' type="submit">Update</button>
+        </form>
         </>
     );
 };
