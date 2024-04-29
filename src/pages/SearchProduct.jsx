@@ -3,6 +3,7 @@ import '../styles/searchProduct.css';
 import { useState } from 'react';
 import Axios from 'axios';
 import { Result } from '../components/Result';
+import { UserAuth } from '../components/context/AuthContext';
 
 const SearchProduct = ({ backTo }) => {
     const [prodQuery, setProdQuery] = useState("");     // State for product query to send to server
@@ -10,6 +11,8 @@ const SearchProduct = ({ backTo }) => {
     const [searchType, setSearchType] = useState("");   // Default to name
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const { user, userType, logout } = UserAuth();
 
     const productChange = (event) => {
         setProdQuery(event.target.value);
@@ -59,8 +62,11 @@ const SearchProduct = ({ backTo }) => {
 
     // TODO: Navigate to ProductInfo
     const handleViewDetails = (id) => {
-        console.log(`Passing: `, id)
-        navigate(`/productInfo`, { state: { id }});
+        if (userType === 'verified') {
+            navigate(`/productInfo`, { state: { id }});
+        } else {
+            navigate(`/catalogue`, { state: { id }});
+        }
     };
     
     return (

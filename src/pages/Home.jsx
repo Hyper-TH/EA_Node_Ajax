@@ -5,79 +5,59 @@ import { UserAuth } from '../components/context/AuthContext.js';
 
 
 const Home = () => {
-    // const { user, userType, logout } = UserAuth();
+    const { user, userType, logout } = UserAuth();
 	const navigate = useNavigate();
     
-	// const handleLogout = async () => {
-	// 	try {
-	// 		await logout();
-	// 		navigate('/');
+	const handleLogout = async () => {
+		try {
+			await logout();
+			navigate('/');
 			
-	// 		console.log(`Logged Out`)
-	// 	} catch (e) {
-	// 		console.log(e.message);
-	// 	}
-	// };
+			console.log(`Logged Out`)
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
 
-    // const content = (() => {
-    //     // If user is verified
-    //     if (user && user.email  && (userType === 'verified')) {
-    //         return (
-    //             <>
-    //             <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
+    const content = (() => {
+        // If user is verified
+        if (user && user.email  && (userType === 'verified')) {
+            return (
+                <>
+                <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
 
-    //             <Link to="/subscriptions" className="btn_collection_top">
-    //                 See Subscriptions
-    //             </Link>
+                <Link to="/searchProduct" className="btn_collection_mid">
+                    Search Products
+                </Link>
 
-    //             <Link to="/search" className="btn_collection_mid">
-    //                 Search Medicines
-    //             </Link>
+                <Link to="/productInfo" className="btn_collection_mid">
+                    Check Products
+                </Link>
 
-    //             <Link to="/foodInteractions" className="btn_collection_mid">
-    //                 Discover Food Interactions
-    //             </Link>
+                </>
+            );
+        } 
+        // If user is standard
+        else {
+            return (
+                <>
+                <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
 
-                            
-    //             <Link to="/searchDrugs" className="btn_collection_mid">
-    //                 Discover Drug Interactions
-    //             </Link>
+                <Link to="/searchProduct" className="btn_collection_mid">
+                    Search Products
+                </Link>
 
-    //             <Link to="/searchProduct" className="btn_collection_bottom">
-    //                 Search Merck Products
-    //             </Link>
+                <Link to="/catalogue" className="btn_collection_mid">
+                    Check Catalogue
+                </Link>
 
-
-    //             </>
-    //         );
-    //     } 
-    //     // If user is standard
-    //     else {
-    //         return (
-    //             <>
-    //             <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
-
-                // <Link to="/subscriptions" className="btn_collection_top">
-                //     See Subscriptions
-                // </Link>
-
-                // <Link to="/search" className="btn_collection_mid">
-                //     Search Medicines
-                // </Link>
-
-                // <Link to="/foodInteractions" className="btn_collection_mid">
-                //    Discover Food Interactions
-                // </Link>
-
-                            
-                // <Link to="/searchDrugs" className="btn_collection_bottom">
-                //     Discover Drug Interactions
-                // </Link>
-
-    //             </>
-    //         );
-    //     }
-    // })();
+                <Link to="/cart" className="btn_collection_mid">
+                    Check Shopping Cart
+                </Link>
+                </>
+            );
+        }
+    })();
  
     return (
         <section className="main_container">
@@ -90,18 +70,12 @@ const Home = () => {
                 <div className="home">
 
                     <div className="btn_collection">
-                        {/* {content}   */}
+                        {content}  
 
-                        <Link to="/searchProduct" className="btn_collection_mid">
-                            Search Products
-                        </Link>
-
-                        <Link to="/productInfo" className="btn_collection_mid">
-                            Check Products
-                        </Link>
+                        
                     </div>   
 
-                    {/* <button className="btn_primary" onClick={handleLogout}>Logout</button> */}
+                    <button className="btn_primary" onClick={handleLogout}>Logout</button>
 
                 </div>
             </div>

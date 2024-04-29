@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import {
 	SignUp, Login,
 	Home, SearchProduct,
-	ProductInfo
+	ProductInfo, Catalogue,
+	ShoppingCart
 } from './RouteImports.js';
 import ProtectedRoute from './components/auth/ProtectedRoute.js';
 import { AuthContextProvider } from './components/context/AuthContext.js';
@@ -24,6 +25,7 @@ function App() {
 					} 
 				/>
 
+				{/* START ADMIN */}
 				<Route 
 					path="/productInfo" 
 					element={
@@ -32,12 +34,32 @@ function App() {
 						</ProtectedRoute>
 					} 
 				/>
+				{/* END ADMIN */}
 
 				<Route 
 					path="/searchProduct" 
 					element={
 						<ProtectedRoute>
 							<SearchProduct backTo="/home" />
+						</ProtectedRoute>
+					} 
+				/>
+
+				
+				<Route 
+					path="/catalogue" 
+					element={
+						<ProtectedRoute>
+							<Catalogue backTo="/home" />
+						</ProtectedRoute>
+					} 
+				/>
+
+				<Route 
+					path="/cart" 
+					element={
+						<ProtectedRoute>
+							<ShoppingCart backTo="/home" />
 						</ProtectedRoute>
 					} 
 				/>

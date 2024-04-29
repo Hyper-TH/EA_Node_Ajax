@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { UserAuth } from '../../components/context/AuthContext.js';
 import Axios from 'axios';
-import { ItemNavigation } from '../components/ItemNavigation.js';
-import { Product } from '../components/Product.js';
-import '../styles/productInfo.css';
+import { ItemNavigation } from '../../components/ItemNavigation.js';
+import { Product } from '../../components/Product.js';
+import '../../styles/productInfo.css';
 
-const ProductInfo = ({ backTo }) => {
+const Catalogue = ({ backTo }) => {
+    const { user } = UserAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -14,11 +16,6 @@ const ProductInfo = ({ backTo }) => {
     const [currProduct, setCurrProduct] = useState({}); 
     const [currIndex, setCurrIndex] = useState(0);
     const [currTotal, setCurrTotal] = useState(0);
-
-    // FOR CRUD
-    const [name, setName] = useState("");
-    const [manufacturer, setManufacturer] = useState("");
-    const [price, setPrice] = useState("");
 
     // STATES
     const [isLoading, setIsLoading] = useState(false);
@@ -40,10 +37,6 @@ const ProductInfo = ({ backTo }) => {
             setCurrProduct(response.data.product);
             setCurrID(response.data.product._id)
 
-            setName(response.data.product.name);
-            setManufacturer(response.data.product.manufacturer);
-            setPrice(response.data.product.price);
-
             setCurrTotal(response.data.total);
             setCurrIndex(response.data.index)
 
@@ -55,51 +48,21 @@ const ProductInfo = ({ backTo }) => {
         }
     };
 
-    const handleFormSubmit = async (action) => {
-        console.log("Pressed a button:", action);
-        
-        if (action === 'update') {
-            await updateItem();
-        } else if (action === 'delete') {
-            await deleteItem();
-        }
-    };
+    // TODO: Add to shopping cart
+    const handleFormSubmit = async () => {
+        console.log(`User Email:`, user.email);
+        try {
+            const response = await Axios.put(
+                `${process.env.REACT_APP_LOCALHOST}/add`, {
+                    email: user.email 
+                }
+            );
 
-    const updateItem = async () => {
-        console.log("Updating items..")
-        console.log(currID, name, manufacturer, price);
+            console.log(response);
 
-        const updatedItem = await Axios.put(
-            `${process.env.REACT_APP_LOCALHOST}/editProd`, {
-                id: currID,
-                name: name, 
-                manufacturer: manufacturer,
-                price: price
-            }
-        );
-
-        if (updatedItem) {
-            setCurrID("");
-            getItems();
-        }
-    };
-
-    const deleteItem = async () => {
-        console.log("Deleting item...");
-        const response = await Axios.put(
-            `${process.env.REACT_APP_LOCALHOST}/deleteProd`, {
-                id: currID,
-            }
-        );
-
-        if (response.data) {
-            if (currIndex == 0) {
-                nextItem();
-            } else {
-                prevItem();
-            }
-        } else {
-            setError(`Product unsucessfully deleted`);
+        } catch (err) {
+            setError('Failed to add product');
+            console.error(err);
         }
     };
     
@@ -117,13 +80,6 @@ const ProductInfo = ({ backTo }) => {
             if (response) {
                 setCurrProduct(response.data.product);
                 setCurrID(response.data.product._id);
-
-                setName(response.data.product.name);
-                setManufacturer(response.data.product.manufacturer);
-                setPrice(response.data.product.price);
-
-                setCurrTotal(parseInt(response.data.total));
-                setCurrIndex(parseInt(response.data.index));
 
                 setError('');
             } else {
@@ -192,9 +148,6 @@ const ProductInfo = ({ backTo }) => {
                             id={currProduct?._id}
                             manufacturer={currProduct?.manufacturer}
                             price={currProduct?.price}
-                            setName={setName}
-                            setManufacturer={setManufacturer}
-                            setPrice={setPrice}
                             handleFormSubmit={handleFormSubmit}
                         />                        
                     </div>
@@ -216,4 +169,4 @@ const ProductInfo = ({ backTo }) => {
     )
 };
 
-export default ProductInfo;
+export default Catalogue;
