@@ -14,7 +14,7 @@ export const ProductInfo = () => {
 
     // FOR CRUD
     const [name, setName] = useState("");
-    const [brand, setBrand] = useState("");
+    const [manufacturer, setManufacturer] = useState("");
     const [price, setPrice] = useState("");
 
     // STATES
@@ -41,6 +41,11 @@ export const ProductInfo = () => {
 
             setCurrProduct(response.data.product);
             setCurrID(response.data.product._id)
+
+            setName(response.data.product.name);
+            setManufacturer(response.data.product.manufacturer);
+            setPrice(response.data.product.price);
+
             setCurrTotal(response.data.total);
             setCurrIndex(response.data.index)
             // console.log(typeof(response.data.index));
@@ -53,23 +58,52 @@ export const ProductInfo = () => {
         }
     };
 
-    const updateItem = async (e) => {
-        e.preventDefault();
+    const handleFormSubmit = async (action) => {
+        console.log("Pressed a button:", action);
+        
+        if (action === 'update') {
+            await updateItem();
+        } else if (action === 'delete') {
+            await deleteItem();
+        }
+    };
 
-        console.log(currID, name, brand, price)
-
-        const data = { 
-            id: currID,
-            name: name, 
-            brand: brand,
-            price: price
-        };
+    const updateItem = async () => {
+        console.log("Updating items..")
+        console.log(currID, name, manufacturer, price);
 
         const updatedItem = await Axios.put(
-            `${process.env.REACT_APP_LOCALHOST}/editProd`, data
+            `${process.env.REACT_APP_LOCALHOST}/editProd`, {
+                id: currID,
+                name: name, 
+                manufacturer: manufacturer,
+                price: price
+            }
         );
 
-        console.log(updateItem);
+        if (updatedItem) {
+            setCurrID("");
+            getItems();
+        }
+    };
+
+    const deleteItem = async () => {
+        console.log("Deleting item...");
+        const response = await Axios.put(
+            `${process.env.REACT_APP_LOCALHOST}/deleteProd`, {
+                id: currID,
+            }
+        );
+
+        if (response.data) {
+            if (currIndex == 0) {
+                nextItem();
+            } else {
+                prevItem();
+            }
+        } else {
+            setError(`Product unsucessfully deleted`);
+        }
     };
     
     const changeItem = async (index) => {
@@ -86,7 +120,12 @@ export const ProductInfo = () => {
 
             if (response) {
                 setCurrProduct(response.data.product);
-                setCurrID(response.data.product._id)
+                setCurrID(response.data.product._id);
+
+                setName(response.data.product.name);
+                setManufacturer(response.data.product.manufacturer);
+                setPrice(response.data.product.price);
+
                 setCurrTotal(parseInt(response.data.total));
                 setCurrIndex(parseInt(response.data.index));
 
@@ -127,9 +166,7 @@ export const ProductInfo = () => {
                 Insert
             </button>
             
-            <button>
-                Delete
-            </button>
+
             </>
         );
     })();
@@ -164,9 +201,9 @@ export const ProductInfo = () => {
                             manufacturer={currProduct?.manufacturer}
                             price={currProduct?.price}
                             setName={setName}
-                            setBrand={setBrand}
+                            setManufacturer={setManufacturer}
                             setPrice={setPrice}
-                            updateItem={updateItem}
+                            handleFormSubmit={handleFormSubmit}
                         />                        
                     </div>
 
