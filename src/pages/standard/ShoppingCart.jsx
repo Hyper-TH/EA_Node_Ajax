@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { UserAuth } from '../../components/context/AuthContext.js';
-import { Product } from '../../components/Product.js';
+import { CartItem } from '../../components/CartItem.js';
 import '../../styles/shoppingCart.css';
 import Axios from 'axios';
 
@@ -19,8 +19,9 @@ const ShoppingCart = ({ backTo }) => {
 
         try {
             const response = await Axios.get(
-                `${process.env.REACT_APP_LOCALHOST}/getCart`,
-                { params: { user: user.email } }
+                `${process.env.REACT_APP_LOCALHOST}/getCart`, {
+                    params: { email: user.email }
+                }
             );
             
             // Directly accessing data and count from response.data
@@ -104,9 +105,10 @@ const ShoppingCart = ({ backTo }) => {
                             <div className='product_list_container'>
                                 {productList.map((product) => (
                                     
-                                    <Product 
+                                    <CartItem 
                                         key={product.productID}
                                         product={product}
+                                        remove={remove}
                                     />
                                 ))}
                             </div>    
