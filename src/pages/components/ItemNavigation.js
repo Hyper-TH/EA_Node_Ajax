@@ -1,8 +1,6 @@
 import '../../styles/productInfo.css';
 
-export const ItemNavigation = (props) => {
-    console.log(typeof(props.index));
-    
+export const ItemNavigation = (props) => {    
     return (
         <>
         <div className="item_btn_navigation">
