@@ -4,7 +4,7 @@ import {
 	SignUp, Login,
 	Home, SearchProduct,
 	ProductInfo, Catalogue,
-	ShoppingCart
+	ShoppingCart, AddProduct
 } from './RouteImports.js';
 import ProtectedRoute from './components/auth/ProtectedRoute.js';
 import { AuthContextProvider } from './components/context/AuthContext.js';
@@ -36,6 +36,15 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<ProductInfo backTo="/home" />
+						</ProtectedRoute>
+					} 
+				/>
+
+				<Route 
+					path="/addProduct" 
+					element={
+						<ProtectedRoute>
+							<AddProduct backTo="/home" />
 						</ProtectedRoute>
 					} 
 				/>
