@@ -85,7 +85,6 @@ const ProductInfo = ({ backTo }) => {
     };
 
     const deleteItem = async () => {
-        console.log("Deleting item...");
         const response = await Axios.put(
             `${process.env.REACT_APP_LOCALHOST}/deleteProd`, {
                 id: currID,
@@ -146,7 +145,7 @@ const ProductInfo = ({ backTo }) => {
     };
     
     const prevItem = async () => {
-        if (currIndex >= 0) {
+        if ((currIndex - 1) >= 0) {
             const newIndex = currIndex - 1;
             changeItem(newIndex);
         } else {

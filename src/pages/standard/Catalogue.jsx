@@ -54,7 +54,10 @@ const Catalogue = ({ backTo }) => {
         try {
             const response = await Axios.put(
                 `${process.env.REACT_APP_LOCALHOST}/add`, {
-                    email: user.email 
+                    email: user.email,
+                    productID: currID,
+                    productName: currProduct.name,
+                    productPrice: currProduct.price
                 }
             );
 
@@ -81,6 +84,9 @@ const Catalogue = ({ backTo }) => {
                 setCurrProduct(response.data.product);
                 setCurrID(response.data.product._id);
 
+                setCurrTotal(parseInt(response.data.total));
+                setCurrIndex(parseInt(response.data.index));
+
                 setError('');
             } else {
                 setError(`Failed to get next product`);
@@ -102,7 +108,7 @@ const Catalogue = ({ backTo }) => {
     };
     
     const prevItem = async () => {
-        if (currIndex >= 0) {
+        if ((currIndex - 1) >= 0) {
             const newIndex = currIndex - 1;
             changeItem(newIndex);
         } else {
