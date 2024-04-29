@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { UserAuth } from '../../components/context/AuthContext.js';
 import { CartItem } from '../../components/CartItem.js';
@@ -11,8 +11,6 @@ const ShoppingCart = ({ backTo }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
-
-    const navigate = useNavigate();
 
     const getProducts = useCallback(async () => {
         setIsLoading(true);
@@ -62,23 +60,11 @@ const ShoppingCart = ({ backTo }) => {
         getProducts();
     };
     
-
     useEffect(() => {
         if (user && user.email) {
             getProducts();
         }
     }, [user, getProducts]); // Depend on `user` so that `getproducts` runs again if `user` changes
-
-
-    const viewProduct = (product) => {
-        // const path = product.pil.path;
-        // const id = product.productID;
-
-        // navigate(
-        //     `/render/${encodeURIComponent(product.productName)}/${encodeURIComponent(type)}`, 
-        //     { state: { id, product, path, type } } 
-        // );
-    };
 
     // Each product list will be its own row
     return (
@@ -109,7 +95,7 @@ const ShoppingCart = ({ backTo }) => {
                             <div className='updated_documents_container'>
                                 {(totalPrice !== 0) ? (
                                     <div className='updated_documents'>
-                                        <p> Total Price: {totalPrice}</p>
+                                        <p> Total Price: ${totalPrice} (including shipping)</p>
                                     </div>
                                 ) : (
                                     <div className='updated_documents'>

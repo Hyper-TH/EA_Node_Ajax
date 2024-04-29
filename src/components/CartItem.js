@@ -8,6 +8,7 @@ export const CartItem = (props) => {
 
                 <h2 className="product_name">{props.product.name}</h2>
                 <h2 className="product_name">Price: ${props.product.price}</h2>
+                <h2 className="product_name">Shipping: ${props.product.shipping}</h2>
                 <h2 className="product_name">Quantity: {props.product.quantity}</h2>
 
                 <button className='btn_submit' onClick={() => props.remove(props.product.id)}>Remove from cart</button>

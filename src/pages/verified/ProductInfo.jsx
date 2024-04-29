@@ -18,7 +18,8 @@ const ProductInfo = ({ backTo }) => {
     // FOR CRUD
     const [name, setName] = useState("");
     const [manufacturer, setManufacturer] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(0);
+    const [shipping, setShipping] = useState(0);
 
     // STATES
     const [isLoading, setIsLoading] = useState(false);
@@ -43,6 +44,7 @@ const ProductInfo = ({ backTo }) => {
             setName(response.data.product.name);
             setManufacturer(response.data.product.manufacturer);
             setPrice(response.data.product.price);
+            setShipping(response.data.product.shipping);
 
             setCurrTotal(response.data.total);
             setCurrIndex(response.data.index)
@@ -76,7 +78,8 @@ const ProductInfo = ({ backTo }) => {
                 id: currID,
                 name: name, 
                 manufacturer: manufacturer,
-                price: price
+                price: price,
+                shipping: shipping
             }
         );
 
@@ -122,6 +125,7 @@ const ProductInfo = ({ backTo }) => {
                 setName(response.data.product.name);
                 setManufacturer(response.data.product.manufacturer);
                 setPrice(response.data.product.price);
+                setShipping(response.data.product.shipping);
 
                 setCurrTotal(parseInt(response.data.total));
                 setCurrIndex(parseInt(response.data.index));
@@ -199,9 +203,11 @@ const ProductInfo = ({ backTo }) => {
                                 id={currProduct?._id}
                                 manufacturer={currProduct?.manufacturer}
                                 price={currProduct?.price}
+                                shipping={currProduct?.shipping}
                                 setName={setName}
                                 setManufacturer={setManufacturer}
                                 setPrice={setPrice}
+                                setShipping={setShipping}
                                 handleFormSubmit={handleFormSubmit}
                             />          
                             </>

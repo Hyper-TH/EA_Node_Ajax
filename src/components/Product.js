@@ -11,7 +11,9 @@ export const Product = (props) => {
             
             <label>Brand: {props.manufacturer}</label>
 
-            <label>Price: {props.price}</label>
+            <label>Price: ${props.price}</label>
+
+            <label>Shipping: ${props.shipping}</label>
 
             <button className='btn_submit' onClick={() => props.handleFormSubmit()}>Add to Cart</button>
         </form>

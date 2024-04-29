@@ -58,7 +58,8 @@ const Catalogue = ({ backTo }) => {
                     email: user.email,
                     productID: currID,
                     productName: currProduct.name,
-                    productPrice: currProduct.price
+                    productPrice: currProduct.price,
+                    productShipping: currProduct.shipping
                 }
             );
 
@@ -161,6 +162,7 @@ const Catalogue = ({ backTo }) => {
                                 id={currProduct?._id}
                                 manufacturer={currProduct?.manufacturer}
                                 price={currProduct?.price}
+                                shipping={currProduct?.shipping}
                                 handleFormSubmit={handleFormSubmit}
                             />  
 
