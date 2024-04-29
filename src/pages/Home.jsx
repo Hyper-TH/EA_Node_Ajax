@@ -26,12 +26,16 @@ const Home = () => {
                 <>
                 <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
 
-                <Link to="/searchProduct" className="btn_collection_mid">
+                <Link to="/searchProduct" className="btn_collection_top">
                     Search Products
                 </Link>
 
                 <Link to="/productInfo" className="btn_collection_mid">
                     Check Products
+                </Link>
+
+                <Link to="/addProduct" className="btn_collection_bottom">
+                    Add Products
                 </Link>
 
                 </>
@@ -43,7 +47,7 @@ const Home = () => {
                 <>
                 <h2 className="sub_title">{`Signed In as ${user.email}`}</h2>
 
-                <Link to="/searchProduct" className="btn_collection_mid">
+                <Link to="/searchProduct" className="btn_collection_top">
                     Search Products
                 </Link>
 
@@ -51,7 +55,7 @@ const Home = () => {
                     Check Catalogue
                 </Link>
 
-                <Link to="/cart" className="btn_collection_mid">
+                <Link to="/cart" className="btn_collection_bottom">
                     Check Shopping Cart
                 </Link>
                 </>
