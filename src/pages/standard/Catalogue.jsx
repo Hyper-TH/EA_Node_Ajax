@@ -157,11 +157,11 @@ const Catalogue = ({ backTo }) => {
                         ) : (
                             <>
                             <Product 
-                            name={currProduct?.name} 
-                            id={currProduct?._id}
-                            manufacturer={currProduct?.manufacturer}
-                            price={currProduct?.price}
-                            handleFormSubmit={handleFormSubmit}
+                                name={currProduct?.name} 
+                                id={currProduct?._id}
+                                manufacturer={currProduct?.manufacturer}
+                                price={currProduct?.price}
+                                handleFormSubmit={handleFormSubmit}
                             />  
 
                         </>

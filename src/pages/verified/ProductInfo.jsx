@@ -53,6 +53,8 @@ const ProductInfo = ({ backTo }) => {
             setCurrProduct(null);
             console.error(err);
         }
+
+        setIsLoading(false);
     };
 
     const handleFormSubmit = async (action) => {
@@ -133,6 +135,8 @@ const ProductInfo = ({ backTo }) => {
             setError(`Failed to get next product`);
             console.error(err);
         };
+
+        setIsLoading(false);
     };
 
     const nextItem = async () => {
@@ -186,16 +190,23 @@ const ProductInfo = ({ backTo }) => {
                         <h1 className='product_title'>
                             Product Details
                         </h1>
-                        <ProductInf 
-                            name={currProduct?.name} 
-                            id={currProduct?._id}
-                            manufacturer={currProduct?.manufacturer}
-                            price={currProduct?.price}
-                            setName={setName}
-                            setManufacturer={setManufacturer}
-                            setPrice={setPrice}
-                            handleFormSubmit={handleFormSubmit}
-                        />                        
+                        {isLoading ? (
+                            <div className='loading'>Loading...</div>
+                        ) : (
+                            <>
+                            <ProductInf 
+                                name={currProduct?.name} 
+                                id={currProduct?._id}
+                                manufacturer={currProduct?.manufacturer}
+                                price={currProduct?.price}
+                                setName={setName}
+                                setManufacturer={setManufacturer}
+                                setPrice={setPrice}
+                                handleFormSubmit={handleFormSubmit}
+                            />          
+                            </>
+                        )}
+                                      
                     </div>
 
                     <div className='product_image'>
