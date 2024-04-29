@@ -119,9 +119,9 @@ const ShoppingCart = ({ backTo }) => {
                             </div>
 
                             <div className='product_list_container'>
-                                {productList.map((product) => (
+                                {productList.map((product, index) => (
                                     <CartItem 
-                                        key={product.productID}
+                                        key={product.productID || `product-${index}`}  // Fallback to index if productID is undefined
                                         product={product}
                                         remove={remove}
                                     />
