@@ -8,7 +8,7 @@ export const Result = (props) => {
             </div>
 
             <div className="sub_product_actions">
-                <button className="btn_sub_product" onClick={() => props.handleViewDetails(props.product)}>View Product Details</button>
+                <button className="btn_sub_product" onClick={() => props.handleViewDetails(props.product._id)}>View Product Details</button>
             </div>
         
         </div>
