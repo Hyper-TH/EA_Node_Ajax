@@ -29,7 +29,7 @@ export const ProductInfo = () => {
 
         try {
             const response = await Axios.get(
-                `${process.env.REACT_APP_LOCALHOST}/getProds`, {
+                `${process.env.REACT_APP_LOCALHOST}/getProd`, {
                     params: { id: currID }
                 }
             );
