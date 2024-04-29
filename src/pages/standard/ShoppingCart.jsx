@@ -8,6 +8,7 @@ import Axios from 'axios';
 const ShoppingCart = ({ backTo }) => {
     const { user } =  UserAuth();
     const [productList, setProductList] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -26,10 +27,11 @@ const ShoppingCart = ({ backTo }) => {
             
             // Directly accessing data and count from response.data
             // Where response.data is a temporary json
-            const { products } = response.data;
+            const { products, totalPrice } = response.data;
             
-            if (products) {
+            if (products && totalPrice) {
                 setProductList(products);
+                setTotalPrice(totalPrice);
             } else {
                 setProductList([]);
             }
@@ -102,9 +104,21 @@ const ShoppingCart = ({ backTo }) => {
                         <div className='loading'>Loading...</div>
                     ) : productList.length > 0 ? (
                         <>
+
+                            <div className='updated_documents_container'>
+                                {(totalPrice !== 0) ? (
+                                    <div className='updated_documents'>
+                                        <p> Total Price: {totalPrice}</p>
+                                    </div>
+                                ) : (
+                                    <div className='updated_documents'>
+                                        <p>No total price, items are free!</p>
+                                    </div>
+                                )}
+                            </div>
+
                             <div className='product_list_container'>
                                 {productList.map((product) => (
-                                    
                                     <CartItem 
                                         key={product.productID}
                                         product={product}

@@ -1,16 +1,17 @@
-import '../styles/productInfo.css';
+import '../styles/shoppingCartItem.css';
 
 export const CartItem = (props) => {
     return (
         <>
-        <form onSubmit={(e) => e.preventDefault()} className='product_form'>
+        <div className="sub_product">
+            <form onSubmit={(e) => e.preventDefault()} className='product_form'>
 
-            <label>Name: {props.product.name}</label>
+                <h2 className="product_name">{props.product.name}</h2>
+                <h2 className="product_name">Price: ${props.product.price}</h2>
 
-            <label>Price: {props.price}</label>
-
-            <button className='btn_submit' onClick={() => props.remove(props.product.id)}>Remove from cart</button>
-        </form>
+                <button className='btn_submit' onClick={() => props.remove(props.product.id)}>Remove from cart</button>
+            </form>
+        </div>
         </>
     );
 };
