@@ -25,6 +25,11 @@ function App() {
 					} 
 				/>
 
+				<Route 
+					path="/signUp"
+					element={<SignUp /> } 
+				/>
+
 				{/* START ADMIN */}
 				<Route 
 					path="/productInfo" 
