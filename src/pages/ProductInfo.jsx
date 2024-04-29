@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
 import { ItemNavigation } from './components/ItemNavigation.js';
 import { Product } from './components/Product.js';
 import '../styles/productInfo.css';
 
-export const ProductInfo = () => {
+export const ProductInfo = ({ backTo }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     // PRODUCT
-    const [currID, setCurrID] = useState(""); //_id
+    const [currID, setCurrID] = useState(location.state?.id ?? ""); //_id
     const [currProduct, setCurrProduct] = useState({}); 
     const [currIndex, setCurrIndex] = useState(0);
     const [currTotal, setCurrTotal] = useState(0);
@@ -21,11 +24,11 @@ export const ProductInfo = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const navigate = useNavigate();
-
     const getItems = async () => {
         setIsLoading(true);
         setError("");    
+
+        console.log(`Current ID:`, currID);
 
         try {
             const response = await Axios.get(
@@ -34,10 +37,10 @@ export const ProductInfo = () => {
                 }
             );
 
-            console.log(response);
-            console.log(response.data.product);
-            console.log("Total", response.data.total);
-            console.log("Index", response.data.index);
+            // console.log(response);
+            // console.log(response.data.product);
+            // console.log("Total", response.data.total);
+            // console.log("Index", response.data.index);
 
             setCurrProduct(response.data.product);
             setCurrID(response.data.product._id)
@@ -48,7 +51,6 @@ export const ProductInfo = () => {
 
             setCurrTotal(response.data.total);
             setCurrIndex(response.data.index)
-            // console.log(typeof(response.data.index));
 
             setError('');
         } catch (err) {
@@ -110,7 +112,6 @@ export const ProductInfo = () => {
         setIsLoading(true);
         setError("");
 
-        console.log(`change item:`, typeof(index));
         try {
             const response = await Axios.get(
                 `${process.env.REACT_APP_LOCALHOST}/getItem`, {
@@ -129,7 +130,6 @@ export const ProductInfo = () => {
                 setCurrTotal(parseInt(response.data.total));
                 setCurrIndex(parseInt(response.data.index));
 
-                console.log(typeof(response.data.index));
                 setError('');
             } else {
                 setError(`Failed to get next product`);
@@ -159,30 +159,27 @@ export const ProductInfo = () => {
         }
     };
 
-    const crud_btns = (() => {
-        return (
-            <>
-            <button>
-                Insert
-            </button>
-            
-
-            </>
-        );
-    })();
-
-
     useEffect(() => {
         getItems();
     }, []);
 
+    // TODO: Add the link to purchase or to add to personal shopping list
     return (
         <div className='main_container'>
             <div className='sub_container'>
-                <div className='crud_buttons'>
-                    {crud_btns}
-                </div>
+                <div className='sub_container_header'>
+                    <Link to={backTo}>
+                        <button className='btn_return'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+                    </Link>
 
+                    <div className='main_title'>
+                        <h1>Search Products</h1>
+                    </div>
+                </div>
 
                 <div className='btn_primary'>
                     <Link to='https://github.com/Hyper-TH/EA_Node_Ajax'>

@@ -58,8 +58,9 @@ export const SearchProduct = ({ backTo }) => {
     const navigate = useNavigate();
 
     // TODO: Navigate to ProductInfo
-    const handleViewDetails = (product) => {
-        navigate(`/result/product/${encodeURIComponent(product.productID)}`, { state: { product }});
+    const handleViewDetails = (id) => {
+        console.log(`Passing: `, id)
+        navigate(`/productInfo`, { state: { id }});
     };
     
     return (
