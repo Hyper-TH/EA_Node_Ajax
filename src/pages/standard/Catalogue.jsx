@@ -46,9 +46,10 @@ const Catalogue = ({ backTo }) => {
             setCurrProduct(null);
             console.error(err);
         }
+
+        setIsLoading(false);
     };
 
-    // TODO: Add to shopping cart
     const handleFormSubmit = async () => {
         console.log(`User Email:`, user.email);
         try {
@@ -96,6 +97,8 @@ const Catalogue = ({ backTo }) => {
             setError(`Failed to get next product`);
             console.error(err);
         };
+
+        setIsLoading(false);
     };
 
     const nextItem = async () => {
@@ -149,13 +152,20 @@ const Catalogue = ({ backTo }) => {
                         <h1 className='product_title'>
                             Product Details
                         </h1>
-                        <Product 
+                        {isLoading ? (
+                            <div className='loading'>Loading...</div>
+                        ) : (
+                            <>
+                            <Product 
                             name={currProduct?.name} 
                             id={currProduct?._id}
                             manufacturer={currProduct?.manufacturer}
                             price={currProduct?.price}
                             handleFormSubmit={handleFormSubmit}
-                        />                        
+                            />  
+
+                        </>
+                        )}
                     </div>
 
                     <div className='product_image'>
@@ -168,7 +178,6 @@ const Catalogue = ({ backTo }) => {
                             nextItem={nextItem}
                         />
                     </div>
-
                 </div>
             </div>
         </div>
