@@ -32,7 +32,7 @@ export const SearchProduct = ({ backTo }) => {
             try {
                 const response = await Axios.get(
                     `${process.env.REACT_APP_LOCALHOST}/getProds`, {
-                        params: { sku: prodQuery }
+                        params: { input: prodQuery, type: searchType }
                     }
                 );
                     
