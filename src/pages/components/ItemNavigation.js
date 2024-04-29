@@ -9,7 +9,7 @@ export const ItemNavigation = (props) => {
 
             <button 
                 onClick={() => props.prevItem(props.index - 1)} 
-                disabled={props.index == 1} 
+                disabled={props.index === 1} 
                 className="nav_left">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 m-auto">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -22,9 +22,9 @@ export const ItemNavigation = (props) => {
 
             <button 
                 onClick={() => props.nextItem(props.index + 1)}
-                disabled={props.index == props.total}
+                disabled={props.index === props.total}
                 className="nav_right">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 m-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 m-auto">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
             </button>
