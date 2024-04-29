@@ -49,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
                             params: {
                                 user: currentUser.email,
                                 uid: currentUser.uid,
-                                type: type
+                                type: "standard"
                             },
                             headers: {
                                 token: idToken
