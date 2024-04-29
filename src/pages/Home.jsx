@@ -1,10 +1,10 @@
 import React from "react";
 import '../styles/home.css';
 import { Link, useNavigate } from 'react-router-dom';
-// import { UserAuth } from '../context/AuthContext.js';
+import { UserAuth } from '../components/context/AuthContext.js';
 
 
-export const Home = () => {
+const Home = () => {
     // const { user, userType, logout } = UserAuth();
 	const navigate = useNavigate();
     
@@ -109,3 +109,5 @@ export const Home = () => {
         </section>
     );
 };
+
+export default Home;

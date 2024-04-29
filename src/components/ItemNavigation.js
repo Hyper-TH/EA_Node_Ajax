@@ -1,4 +1,4 @@
-import '../../styles/productInfo.css';
+import '../styles/productInfo.css';
 
 export const ItemNavigation = (props) => {    
     return (

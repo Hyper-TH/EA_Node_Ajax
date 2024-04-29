@@ -1,11 +1,14 @@
 import React from 'react';
-import { SignIn } from './components/auth/SignIn.js';
+import { SignIn } from '../components/auth/SignIn.jsx';
 
-export const Login = () => {
+const Login = () => {
     return (
         <>
+        <section className='main_container'>
             <SignIn />
-            {/* Perhaps just render the guest button here */}
+        </section>
         </>
-    )
+    );
 };
+
+export default Login;

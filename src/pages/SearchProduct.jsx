@@ -2,9 +2,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/searchProduct.css';
 import { useState } from 'react';
 import Axios from 'axios';
-import { Result } from './components/Result';
+import { Result } from '../components/Result';
 
-export const SearchProduct = ({ backTo }) => {
+const SearchProduct = ({ backTo }) => {
     const [prodQuery, setProdQuery] = useState("");     // State for product query to send to server
     const [productList, setProductList] = useState([])  // State for list of product responses
     const [searchType, setSearchType] = useState("");   // Default to name
@@ -167,3 +167,5 @@ export const SearchProduct = ({ backTo }) => {
     </>
     )
 };
+
+export default SearchProduct;

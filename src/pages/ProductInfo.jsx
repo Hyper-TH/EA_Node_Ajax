@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Axios from 'axios';
-import { ItemNavigation } from './components/ItemNavigation.js';
-import { Product } from './components/Product.js';
+import { ItemNavigation } from '../components/ItemNavigation.js';
+import { Product } from '../components/Product.js';
 import '../styles/productInfo.css';
 
-export const ProductInfo = ({ backTo }) => {
+const ProductInfo = ({ backTo }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -36,11 +36,6 @@ export const ProductInfo = ({ backTo }) => {
                     params: { id: currID }
                 }
             );
-
-            // console.log(response);
-            // console.log(response.data.product);
-            // console.log("Total", response.data.total);
-            // console.log("Index", response.data.index);
 
             setCurrProduct(response.data.product);
             setCurrID(response.data.product._id)
@@ -220,3 +215,5 @@ export const ProductInfo = ({ backTo }) => {
         </div>
     )
 };
+
+export default ProductInfo;

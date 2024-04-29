@@ -1,27 +1,49 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { ProductInfo } from './pages/ProductInfo';
-import { SearchProduct } from './pages/SearchProduct';
-import { Login } from './pages/Login';
+import {
+	SignUp, Login,
+	Home, SearchProduct,
+	ProductInfo
+} from './RouteImports.js';
+import ProtectedRoute from './components/auth/ProtectedRoute.js';
+import { AuthContextProvider } from './components/context/AuthContext.js';
 
 function App() {
 	return (
 		<>
-		<Routes>
-			<Route path="/" element={<Login />} />
-			<Route path="/home" element={<Home />} />
-			<Route 
-				path="/productInfo" 
-				element={<ProductInfo backTo="/home" />} 
-			/>
+		<AuthContextProvider>
+			<Routes>
+				<Route path="/" element={<Login />} />
 
-			<Route 
-				path="/searchProduct" 
-				element={<SearchProduct backTo="/home" />} 
-			/>
+				<Route 
+					path="/home"
+					element={
+						<ProtectedRoute>
+							<Home />
+						</ProtectedRoute>
+					} 
+				/>
 
-		</Routes>
+				<Route 
+					path="/productInfo" 
+					element={
+						<ProtectedRoute>
+							<ProductInfo backTo="/home" />
+						</ProtectedRoute>
+					} 
+				/>
+
+				<Route 
+					path="/searchProduct" 
+					element={
+						<ProtectedRoute>
+							<SearchProduct backTo="/home" />
+						</ProtectedRoute>
+					} 
+				/>
+
+			</Routes>
+		</AuthContextProvider>
 		</>	
 	);
 }
