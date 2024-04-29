@@ -44,15 +44,16 @@ const ShoppingCart = ({ backTo }) => {
     }, [user.email]);
 
 
-    const remove = async (product) => {
+    const remove = async (id) => {
         try {
-            await Axios.get(
-                `${process.env.REACT_APP_LOCALHOST}/delete`,
-                {
-                    params: { user: user.email, id: product.id }
+            const response = await Axios.post(
+                `${process.env.REACT_APP_LOCALHOST}/remove`, { 
+                    email: user.email, 
+                    productID: id
                 }
             );
 
+            console.log(response);
         } catch (error) {
             console.error(`Axios Error: ${error}`);
             setError("Local Server Error");
