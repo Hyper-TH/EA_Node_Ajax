@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import '../../styles/sign_in.css';
+import { useEffect, useState } from 'react';
+import Axios from 'axios';
+import '../../styles/addProduct.css';
 
 const AddProduct = () => {
     // sku and upc are both randomized numbers
@@ -14,7 +15,44 @@ const AddProduct = () => {
     const [url, setUrl] = useState("");
     const [image, setImage] = useState("");
 
+    const [catList, setCatList] = useState([]);
+
+    const [isLoading, setIsLoading] = useState("");
     const [error, setError] = useState("");
+
+    const handleDropdownChange = (e) => {
+        const selectedId = e.target.value;
+        const selectedCategory = catList.find(cat => cat.id === selectedId);
+        setCategory(selectedCategory); // Set the full category object to state
+    };
+
+
+    const getCategories = async () => {
+        setIsLoading(true);
+        setError("");
+
+        try {
+            const response = await Axios.get(`${process.env.REACT_APP_LOCALHOST}/getCategories`);
+
+            if (response) {
+                setCatList(response.data);
+            } else {
+                setError(`Failed to get list of categories`);
+                setCatList([]);
+            };
+
+        } catch (error) {
+            setError(`Failed to get list of categories`);
+            console.error(`Failed to get list of categories`);
+        }
+
+        setIsLoading(false);
+    };
+
+    useEffect(() => {
+        getCategories();
+    }, []);
+
     return (
         <>
         <div className='main_container'>
@@ -23,13 +61,17 @@ const AddProduct = () => {
                     Hyper's Shop
                 </h1>
 
-                <div className='sign_in_container'>
-                    <div className='sign_in'>
-                        <h1 className='sign_in_title'>
+                <div className='add_product_container'>
+                    <div className='add_product'>
+                        <h1 className='add_product_title'>
                             Sign in to your account
                         </h1>
 
-                        <form className='sign_in_form'>
+                        {isLoading ? (
+                            <div className='loading'>Loading...</div>
+                        ) : (
+                            <>
+                            <form className='add_product_form'>
                             <div>
                                 <label>Name</label>
                                 <input 
@@ -55,20 +97,39 @@ const AddProduct = () => {
                             </div>
 
                             <div>
-                                {/* TODO:  This should be a dropdown of categories*/}
                                 <label>Category</label>
-                                <input 
-                                    value={category}
-                                    onChange={(e) =>  setCategory(e.target.value)}
-                                    required/>
-                            </div>
 
+                                <div className="relative flex-2">
+                                    <select
+                                        id="dropdown"
+                                        value={category.id || ''} // Reflects the id of the selected category in the dropdown
+                                        className="search_type"
+                                        onChange={handleDropdownChange}
+                                        required
+                                    >
+                                        <option value="">Choose Category</option>
+                                        {catList.map((cat) => (
+                                            <option key={cat.id} value={cat.id}>
+                                                {cat.name}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    <div className="dropdown_icon">
+                                        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 12">
+                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 8 8 8-8"/>
+                                        </svg>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                    
                             <div>
                                 <label>Shipping</label>
                                 <input 
                                     value={shipping}
-                                    onChange={(e) =>  setShipping(e.target.value)}
-                                    required/>
+                                    onChange={(e) =>  setShipping(e.target.value)}/>
                             </div>
 
                             <div>
@@ -113,7 +174,8 @@ const AddProduct = () => {
 
                             <button className='btn_login'>Login</button>
                         </form>
-
+                            </>
+                        )}
                     </div>
                 </div>
 
