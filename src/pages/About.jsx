@@ -32,26 +32,50 @@ const About = ({ backTo }) => {
 
                     <div className='about_sub_details'>
                         <div>
-                            <span className='about_header inline'>Student Number: </span>
+                            <span className='about_header inline'>Student Number: C20361521</span>
                             <span className='about_text inline'>C</span> 
                         </div>
 
                         <div>
                             <span className='about_header inline'>Student Name: </span>
-                            <span className='about_text inline'>T</span>
+                            <span className='about_text inline'>Twila Habab</span>
                         </div>
                     </div>
 
                     <div className="about_divider">
                         <hr className="divider_line" />
                         <span className="title_divider">
-                            About this project
+                            Technologies Used
                         </span>
                     </div>
                     
                     <div className='about_sub_details'>
-                        <span className='about_header inline'></span>
-                        <span className='about_text inline'></span>
+                        <span className='about_header inline'>Front End</span>
+
+                        <span className='about_text inline'>
+                            <ul className='max-w-md space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside'>
+                                <li><b>React: </b> Light framework</li>
+                                <li><b>Tailwind: </b> Utility-first CSS framework</li>
+                                <li><b>Axios: </b> Library for HTTP requests</li>
+                                <li><b>Firebase: </b> Library for authenticating with Firebase</li>
+                            </ul>
+                        </span>
+
+                        <br />
+
+                        <span className='about_header inline'>Back End</span>
+
+                        <span className='about_text inline'>
+                            <ul className='max-w-md space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside'>
+                                <li><b>Express: </b> Server Framework</li>
+                                <li><b>Cors: </b> Package to provide a connect/express middleware </li>
+                                <li><b>Dotenv: </b> For environment variables</li>
+                                <li><b>Firebase: </b> Library for authenticating with Firebase</li>
+                                <li><b>MongoDB: </b> Library for MongoDB utilities</li>
+                                <li><b>Mongoose: </b> Library for MongoDB object modelling</li>
+                                <li><b>Nodemon: </b> Monitor script for a node.js app</li>
+                            </ul>
+                        </span>
                     </div>
 
                     <div className="about_divider">
@@ -86,11 +110,24 @@ const About = ({ backTo }) => {
 
                             <div>
                                 <span className='about_text inline'>
-                                    The <b>Standard</b> user has access to 3 pages:
+                                    The <b>Standard (customer)</b> user has access to 3 pages:
                                     <ul className='max-w-md space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside'>
                                         <li>Search Products</li>
                                         <li>Check Catalogue</li>
                                         <li>Check Shopping Cart</li>
+                                    </ul>
+                                </span>
+                            </div>
+
+                            <br />
+
+                            <div>
+                                <span className='about_text inline'>
+                                    The <b>Verified (admin)</b> user has access to 3 pages:
+                                    <ul className='max-w-md space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside'>
+                                        <li>Search Products</li>
+                                        <li>Check Products</li>
+                                        <li>Add Product</li>
                                     </ul>
                                 </span>
                             </div>
@@ -204,7 +241,7 @@ const About = ({ backTo }) => {
                                                     <th scope="row" > /deleteProd </th>
                                                     <td className="px-6 py-4"> Admin </td>
                                                     <td className="px-6 py-4">
-                                                        Delete a product from the catalogue
+                                                        Delete a product from the catalogue.
                                                     </td>
                                                 </tr>
 
@@ -216,6 +253,37 @@ const About = ({ backTo }) => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="about_divider">
+                        <hr className="divider_line" />
+                        <span className="title_divider">
+                            Weaknesses in the Application
+                        </span>
+                    </div>
+
+                    <span className='about_text inline'>
+                        <ul className='max-w-md space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside'>
+                            <li>UI not fully flexible and interactive, especially for mobile clients</li>
+                            <li>Space for improvement in Server-Client communication</li>
+                            <li>Lack of usernames</li>
+                            <li>Limited number of categories</li>
+                        </ul>
+                    </span>
+
+
+                    <div className="about_divider">
+                        <hr className="divider_line" />
+                        <span className="title_divider">
+                            Future Work
+                        </span>
+                    </div>
+
+                    <span className='about_text inline'>
+                        <ul className='max-w-md space-y-1 text-gray-800 dark:text-gray-300 list-disc list-inside'>
+                            <li>Mobile compatibility</li>
+                            <li>Better UI layouts</li>
+                        </ul>
+                    </span>
 
                 </div>
             </div>
