@@ -209,10 +209,9 @@ const ProductInfo = ({ backTo }) => {
                                       
                     </div>
 
-                    <div className='product_image'>
-                        <img src={currProduct?.image} alt="Product" />
-
+                    <div className='product_image flex flex-col items-center justify-center'>
                         <ItemNavigation 
+                            image={currProduct?.image}
                             total={currTotal}
                             index={currIndex}
                             prevItem={prevItem}

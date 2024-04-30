@@ -3,6 +3,10 @@ import '../styles/productInfo.css';
 export const ItemNavigation = (props) => {    
     return (
         <>
+        <div>
+            <img src={props.image} alt="Product" />
+        </div>
+
         <div className="item_btn_navigation">
 
             <button 

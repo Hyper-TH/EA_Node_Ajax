@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .product_container {
-	@apply 
-	w-full bg-white rounded-lg shadow dark:border 
-	md:mt-0 sm:max-w-md xl:p-0	
-	dark:bg-gray-800 dark:border-gray-700;
-} */
-
 .product_container {
     @apply 
     flex flex-row justify-start items-start w-full bg-white rounded-lg shadow dark:border 
