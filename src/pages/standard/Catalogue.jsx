@@ -157,6 +157,7 @@ const Catalogue = ({ backTo }) => {
                                 manufacturer={currProduct?.manufacturer}
                                 price={currProduct?.price}
                                 shipping={currProduct?.shipping}
+                                url={currProduct?.url}
                                 handleFormSubmit={handleFormSubmit}
                             />  
 

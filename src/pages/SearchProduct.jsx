@@ -60,7 +60,6 @@ const SearchProduct = ({ backTo }) => {
 
     const navigate = useNavigate();
 
-    // TODO: Navigate to ProductInfo
     const handleViewDetails = (id) => {
         if (userType === 'verified') {
             navigate(`/productInfo`, { state: { id }});

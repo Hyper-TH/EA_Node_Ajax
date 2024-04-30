@@ -15,6 +15,16 @@ export const Product = (props) => {
 
             <label>Shipping: ${props.shipping}</label>
 
+            <label>
+                <a 
+                    href={props.url}
+                    className="text-blue-500 hover:text-blue-700"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    See official product page here
+                </a>
+            </label>
+
             <button className='btn_submit' onClick={() => props.handleFormSubmit()}>Add to Cart</button>
         </form>
         </>
