@@ -124,7 +124,6 @@ const Catalogue = ({ backTo }) => {
         getItems();
     }, []);
 
-    // TODO: Add the link to purchase or to add to personal shopping list
     return (
         <div className='main_container'>
             <div className='sub_container'>

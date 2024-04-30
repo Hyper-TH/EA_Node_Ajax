@@ -16,7 +16,7 @@ export const ProductInf = (props) => {
             <label>Price: {props.price}</label>
             <input type="number" onChange={(e) => props.setPrice(e.target.value)} />
 
-            <label>Shipping: {props.price}</label>
+            <label>Shipping: {props.shipping}</label>
             <input type="number" onChange={(e) => props.setShipping(e.target.value)} />
 
             <button className='btn_submit' onClick={() => props.handleFormSubmit('update')}>Update</button>
