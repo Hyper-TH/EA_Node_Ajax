@@ -183,12 +183,6 @@ const ProductInfo = ({ backTo }) => {
                     </div>
                 </div>
 
-                <div className='btn_primary'>
-                    <Link to='https://github.com/Hyper-TH/EA_Node_Ajax'>
-                        <button>About this page</button>
-                    </Link>
-                </div>
-
                 <div className='product_container'>
                     <div className='product'>
                         <h1 className='product_title'>

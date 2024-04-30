@@ -38,6 +38,9 @@ const Home = () => {
                     Add Products
                 </Link>
 
+                <Link to="/about" className="btn_collection_bottom">
+                    About this web application
+                </Link>
                 </>
             );
         } 
@@ -57,6 +60,10 @@ const Home = () => {
 
                 <Link to="/cart" className="btn_collection_bottom">
                     Check Shopping Cart
+                </Link>                
+                
+                <Link to="/about" className="btn_collection_bottom">
+                    About this web application
                 </Link>
                 </>
             );
