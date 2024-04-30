@@ -26,7 +26,6 @@ const AddProduct = () => {
         setCategory(selectedCategory); // Set the full category object to state
     };
 
-
     const getCategories = async () => {
         setIsLoading(true);
         setError("");
@@ -44,6 +43,38 @@ const AddProduct = () => {
         } catch (error) {
             setError(`Failed to get list of categories`);
             console.error(`Failed to get list of categories`);
+        }
+
+        setIsLoading(false);
+    };
+
+    const addProduct = async () => {
+        setIsLoading(true);
+        setError("");
+
+        try {
+            const response = await Axios.post(`${process.env.REACT_APP_LOCALHOST}/addProduct`, {
+                name: name,
+                type: type,
+                price: price,
+                category: category,
+                shipping: shipping,
+                description: description,
+                manufacturer: manufacturer,
+                model: model,
+                url: url,
+                image: image
+            });
+
+            if (response) {
+                setError("Successfully added product!");
+            } else {
+                setError("Product not added!");
+            }
+            
+        } catch (error) {
+            setError(`Product not added.`);
+            console.error(`Product added unsuccessfully`);
         }
 
         setIsLoading(false);
@@ -71,7 +102,7 @@ const AddProduct = () => {
                             <div className='loading'>Loading...</div>
                         ) : (
                             <>
-                            <form className='add_product_form'>
+                            <form className='add_product_form' onSubmit={addProduct}>
                             <div>
                                 <label>Name</label>
                                 <input 
