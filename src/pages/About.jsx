@@ -32,8 +32,8 @@ const About = ({ backTo }) => {
 
                     <div className='about_sub_details'>
                         <div>
-                            <span className='about_header inline'>Student Number: C20361521</span>
-                            <span className='about_text inline'>C</span> 
+                            <span className='about_header inline'>Student Number: </span>
+                            <span className='about_text inline'>C20361521</span> 
                         </div>
 
                         <div>
