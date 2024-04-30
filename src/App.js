@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import {
 	SignUp, Login,
 	Home, SearchProduct,
-	ProductInfo, Catalogue,
-	ShoppingCart, AddProduct,
-	About
+	SearchByCat, ProductInfo, 
+	Catalogue, ShoppingCart, 
+	AddProduct, About
 } from './RouteImports.js';
 import ProtectedRoute from './components/auth/ProtectedRoute.js';
 import { AuthContextProvider } from './components/context/AuthContext.js';
@@ -56,6 +56,15 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<SearchProduct backTo="/home" />
+						</ProtectedRoute>
+					} 
+				/>
+
+				<Route 
+					path="/searchByCat" 
+					element={
+						<ProtectedRoute>
+							<SearchByCat backTo="/home" />
 						</ProtectedRoute>
 					} 
 				/>

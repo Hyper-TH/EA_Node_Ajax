@@ -54,6 +54,10 @@ const Home = () => {
                     Search Products
                 </Link>
 
+                <Link to="/searchByCat" className="btn_collection_mid">
+                    Search Products by Category
+                </Link>
+
                 <Link to="/catalogue" className="btn_collection_mid">
                     Check Catalogue
                 </Link>

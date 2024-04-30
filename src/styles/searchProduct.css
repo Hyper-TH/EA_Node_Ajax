@@ -47,7 +47,7 @@
     dark:bg-gray-700; 
 }
 
-.search_type {
+.search_type_cat {
     @apply
     appearance-none 
     mobile_s:text-xs
@@ -57,7 +57,6 @@
     mobile_m:max-w-10
     mobile_l:max-w-12
     sm:max-w-lg
-    md:max-w-xl
     bg-gray-50 
     border border-gray-300 
     inline-flex items-center 

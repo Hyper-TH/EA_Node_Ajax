@@ -7,11 +7,12 @@ import Catalogue from "./pages/standard/Catalogue";
 import ShoppingCart from "./pages/standard/ShoppingCart";
 import AddProduct from "./pages/verified/AddProduct";
 import About from "./pages/About";
+import SearchByCat from "./pages/SearchByCat";
 
 export {
     SignUp, Login,
     Home, SearchProduct,
-    ProductInfo, Catalogue,
-    ShoppingCart, AddProduct,
-    About
+    SearchByCat, ProductInfo, 
+    Catalogue, ShoppingCart, 
+    AddProduct, About
 };

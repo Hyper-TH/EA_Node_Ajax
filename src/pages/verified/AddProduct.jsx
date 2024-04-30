@@ -106,7 +106,7 @@ const AddProduct = ({ backTo }) => {
                 <div className='add_product_container'>
                     <div className='add_product'>
                         <h1 className='add_product_title'>
-                            Sign in to your account
+                            Input the product details
                         </h1>
 
                         {isLoading ? (
@@ -145,7 +145,7 @@ const AddProduct = ({ backTo }) => {
                                     <select
                                         id="dropdown"
                                         value={category.id || ''} // Reflects the id of the selected category in the dropdown
-                                        className="search_type"
+                                        className="search_type_cat"
                                         onChange={handleDropdownChange}
                                         required
                                     >
@@ -222,7 +222,7 @@ const AddProduct = ({ backTo }) => {
                 </div>
 
                 {error && 
-                    <div className='error'>
+                    <div className='addedProduct'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
                         </svg>
@@ -239,25 +239,3 @@ const AddProduct = ({ backTo }) => {
 };
 
 export default AddProduct;
-
-/*
-const ProductSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    sku: { type: Number, required: false },
-    name: { type: String, required: false },
-    type: { type: String, required: false },
-    price: { type: Number, required: false },
-    upc: { type: String, required: false },
-    category: [{
-        id: { type: String, required: true },
-        name: { type: String, required: true }
-    }],
-    shipping: { type: Number, required: false },
-    description: { type: String, required: false },
-    manufacturer: { type: String, required: false },
-    model: { type: String, required: false },
-    url: { type: String, required: false },
-    image: { type: String, required: false } 
-}, { strict: false });
-
-*/
