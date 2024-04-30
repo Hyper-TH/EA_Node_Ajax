@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.about_details_container {
+	@apply 
+	w-full h-auto bg-white rounded-lg shadow dark:border 
+	md:mt-0 sm:max-w-3xl xl:p-0	
+	dark:bg-gray-800 dark:border-gray-700;
+}
+
+.about_details {
+	@apply 
+	p-6 space-y-4 md:space-y-6 sm:p-8;
+}
+
+.about_name {
+	@apply
+	items-center 
+    mb-6 
+	mobile_s:text-xs
+	mobile_m:text-sm
+	mobile_l:text-base 
+	md:text-xl
+	font-bold text-gray-900 dark:text-white;
+}
+
+.about_divider {
+    @apply
+    relative text-center;
+}
+
+.divider_line {
+    @apply
+    absolute left-0 top-1/2 w-full border-t-2 border-gray-300;
+}
+
+.title_divider{
+    @apply
+    relative bg-white px-4 text-lg font-semibold text-gray-900 dark:text-white dark:bg-gray-800;
+}
+
+.about_title_divider {
+    @apply block border-b border-gray-200 mx-8;
+}
+
+.about_sub_details {
+	@apply 
+	text-gray-800
+	dark:text-white;
+}
+
+.about_header {
+	@apply font-semibold 
+	mobile_s:text-base
+	mobile_m:text-lg
+	mobile_l:text-xl
+	text-base 
+	my-4; /* Adjust margin-bottom as needed */
+}
+  
+.about_text {
+	@apply 
+	mobile_s:text-sm
+	mobile_m:text-base
+	mobile_l:text-lg
+	md:text-base 
+	my-4; /* This keeps the text size standard */
+}
+
+.endpoint {
+	@apply
+	relative overflow-x-auto shadow-md sm:rounded-lg;
+}
+
+.endpointTable {
+	@apply
+	w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400;
+}
+
+.endpointTable thead {
+	@apply
+	text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+}
+
+.endpointTable tr {
+	@apply
+	odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700;
+}
