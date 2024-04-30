@@ -34,7 +34,7 @@ const Home = () => {
                     Check Products
                 </Link>
 
-                <Link to="/addProduct" className="btn_collection_bottom">
+                <Link to="/addProduct" className="btn_collection_mid">
                     Add Products
                 </Link>
 
@@ -58,7 +58,7 @@ const Home = () => {
                     Check Catalogue
                 </Link>
 
-                <Link to="/cart" className="btn_collection_bottom">
+                <Link to="/cart" className="btn_collection_mid">
                     Check Shopping Cart
                 </Link>                
                 
