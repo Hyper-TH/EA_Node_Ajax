@@ -40,6 +40,34 @@ const About = ({ backTo }) => {
                             <span className='about_header inline'>Student Name: </span>
                             <span className='about_text inline'>Twila Habab</span>
                         </div>
+
+                        <br />
+                        
+                        <div>
+                            <span className='about_text inline'>
+                                <a 
+                                    href="https://github.com/Hyper-TH/EA_Node_Ajax" 
+                                    className="text-blue-500 hover:text-blue-700"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    Client-Side Repository
+                                </a>
+                            </span>
+                        </div>
+
+                        <br />
+
+                        <div>
+                            <span className='about_text inline'>
+                                <a 
+                                    href="https://github.com/Hyper-TH/EA_Node_Ajax_Server" 
+                                    className="text-blue-500 hover:text-blue-700"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    Server-Side Repository
+                                </a>
+                            </span>
+                        </div>
                     </div>
 
                     <div className="about_divider">
